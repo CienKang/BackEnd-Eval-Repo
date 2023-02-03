@@ -4,7 +4,7 @@ const postSaveSchema = Joi.object({
     urlLink: Joi.string().required().regex(/https:\/\/store-[0-9]+\.s3\.amazonaws\.com\/[a-zA-z]+[0-9]*\.csv/)
 }).required();
 
-const bodyValidator = (schema) =>{
+const bodyValidator = (schema) => {
     return (req, res, next) => {
         const body = req.body;
         const { error } = schema.validate(body);
@@ -16,5 +16,10 @@ const bodyValidator = (schema) =>{
         }
     };
 };
+const updateCompanyDetailsSchema = Joi.object({
+    ceo: Joi.string(),
+    name: Joi.string()
 
-module.exports  = { postSaveSchema , bodyValidator};
+}).required().min(1);
+
+module.exports = { postSaveSchema, updateCompanyDetailsSchema, bodyValidator};
