@@ -23,7 +23,7 @@ describe('saveController', () => {
             };
 
             await saveController.saveCompanyData(mockReq, mockRes);
-
+            
             expect(mockRes.status).toHaveBeenCalledWith(201);
             expect(mockRes.json).toHaveBeenCalledWith({ message: 'New data saved ', data: [] });
         });
@@ -48,8 +48,8 @@ describe('saveController', () => {
 
             await saveController.saveCompanyData(mockReq, mockRes);
 
-            expect(mockRes.status).toHaveBeenCalledWith(200);
-            expect(mockRes.json).toHaveBeenCalledWith({ message: 'No new data saved', data: [] });
+            expect(mockRes.status).toBeCalledWith(200);
+            expect(mockRes.json).toBeCalledWith({ message: 'No new data saved', data: [] });
 
         });
     });
