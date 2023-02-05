@@ -9,4 +9,8 @@ const updateCompanyDetailsSchema = Joi.object({
     address: Joi.string(),
 }).required().min(1);
 
-module.exports = { postSaveSchema, updateCompanyDetailsSchema };
+const rankingSchema = Joi.object({
+    sector: Joi.string()
+}).required();
+
+module.exports = { postSaveSchema, updateCompanyDetailsSchema, rankingSchema};

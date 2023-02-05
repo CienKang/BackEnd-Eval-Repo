@@ -60,7 +60,8 @@ const addCompanyScoresInDB = async (sector) => {
             cf: data[idx].performanceIndex[1].value,
             mau: data[idx].performanceIndex[2].value,
             roic: data[idx].performanceIndex[3].value,
-            score: score
+            score: score,
+            sector: sector
         }, {
             where: {
                 company_id: data[idx].companyId
