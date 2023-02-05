@@ -1,8 +1,9 @@
 
 const { Companies } = require('../../database/models');
-const getSectorCompDataDB = async (attributes,sector) =>{
-    
-    return await Companies.findAll({
+const { NotFoundError } = require('../utils/errors');
+const getSectorCompDataDB = async (attributes, sector) => {
+
+    const data = await Companies.findAll({
         where: {
             sector: sector
         },
@@ -11,6 +12,8 @@ const getSectorCompDataDB = async (attributes,sector) =>{
             ['score', 'DESC']
         ]
     });
+    if (!data)
+        throw NotFoundError('No data found');
 };
 
-module.exports = { getSectorCompDataDB};
+module.exports = { getSectorCompDataDB };

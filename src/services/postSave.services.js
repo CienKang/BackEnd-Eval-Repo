@@ -26,7 +26,7 @@ const checkForNewUrlData = async (data) => {
 };
 
 const addNewCompanyInDB = async (id) => {
-    const data = await fetch(`http://54.167.46.10/company/${id}`).then(resp=> resp.json());
+    const data = await fetch(`http://54.167.46.10/company/${id}`).then(resp => resp.json());
 
 
     await Companies.findOrCreate({
@@ -47,14 +47,14 @@ const addNewCompanyInDB = async (id) => {
 const addCompanyScoresInDB = async (sector) => {
     const data = await fetch(`http://54.167.46.10/sector?name=${sector}`).then(res => res.json());
 
-    for(let idx = 0; idx < data.length; idx++) {
+    for (let idx = 0; idx < data.length; idx++) {
         const cpi = data[idx].performanceIndex[0].value,
             cf = data[idx].performanceIndex[1].value,
             mau = data[idx].performanceIndex[2].value,
             roic = data[idx].performanceIndex[3].value,
             score = ((cpi * 10) + (cf / 10000) + (mau * 10) + roic) / 4;
-        
-        console.log(cpi,score);
+
+        console.log(cpi, score);
         await Companies.update({
             cpi: data[idx].performanceIndex[0].value,
             cf: data[idx].performanceIndex[1].value,
@@ -73,13 +73,13 @@ const addCompanyScoresInDB = async (sector) => {
 const getHttpResponeData = async (id) => {
     const data = [];
 
-    for(let idx = 0; idx < id.length; idx++) {
+    for (let idx = 0; idx < id.length; idx++) {
         const company = await Companies.findAll({
-            raw:true,
+            raw: true,
             where: {
                 company_id: id[idx]
             },
-            attributes: ['company_id','name','score']
+            attributes: ['company_id', 'name', 'score']
         });
         data.push(company);
     }
@@ -87,4 +87,4 @@ const getHttpResponeData = async (id) => {
     return data;
 
 };
-module.exports = { checkForNewUrlData, addNewCompanyInDB , addCompanyScoresInDB , getHttpResponeData };
+module.exports = { checkForNewUrlData, addNewCompanyInDB, addCompanyScoresInDB, getHttpResponeData };
