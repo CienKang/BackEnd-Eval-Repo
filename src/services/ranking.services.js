@@ -13,7 +13,8 @@ const getSectorCompDataDB = async (attributes, sector) => {
         ]
     });
     if (!data)
-        throw NotFoundError('No data found');
+        throw new NotFoundError('No data found');
+    return data;
 };
 
 module.exports = { getSectorCompDataDB };

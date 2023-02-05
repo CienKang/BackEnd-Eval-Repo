@@ -54,7 +54,6 @@ const addCompanyScoresInDB = async (sector) => {
             roic = data[idx].performanceIndex[3].value,
             score = ((cpi * 10) + (cf / 10000) + (mau * 10) + roic) / 4;
 
-        console.log(cpi, score);
         await Companies.update({
             cpi: data[idx].performanceIndex[0].value,
             cf: data[idx].performanceIndex[1].value,

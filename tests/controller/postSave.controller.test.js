@@ -35,7 +35,7 @@ describe('postSave controller', () => {
                 status: jest.fn().mockReturnThis(),
                 json: jest.fn()
             };
-            
+
             await postSaveControlller.postSave(req, res);
             expect(res.status).toHaveBeenCalledWith(201);
             expect(res.json).toHaveBeenCalledWith({ message: 'Data added successfully', data: [{ company_id: 1, company_sector: 'sector1' }] });

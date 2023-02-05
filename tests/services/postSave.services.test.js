@@ -48,28 +48,28 @@ describe('postSave.services', () => {
                 ceo: 'ceo',
                 tags: 'tags'
             };
-            jest.spyOn(global, 'fetch').mockResolvedValue({ json: () => mockFetch});
+            jest.spyOn(global, 'fetch').mockResolvedValue({ json: () => mockFetch });
 
             const mockFindOrCreate = [mockFetch];
             jest.spyOn(Companies, 'findOrCreate').mockResolvedValue(mockFindOrCreate);
-            await(postSaveServices.addNewCompanyInDB(1));
+            await (postSaveServices.addNewCompanyInDB(1));
 
         });
     });
 
     describe('addCompanyScoresInDB', () => {
-        
+
         it('should update the company scores in the database', async () => {
             const mockFetch = [{
                 id: 1,
-                performanceIndex: [{ value: 1},{value: 1},{value: 1},{value: 1}]
+                performanceIndex: [{ value: 1 }, { value: 1 }, { value: 1 }, { value: 1 }]
             }];
 
-            jest.spyOn(global, 'fetch').mockResolvedValue({ json: () => mockFetch});
+            jest.spyOn(global, 'fetch').mockResolvedValue({ json: () => mockFetch });
 
             const mockUpdate = [1];
             jest.spyOn(Companies, 'update').mockResolvedValue(mockUpdate);
-            await(postSaveServices.addCompanyScoresInDB('sector'));
+            await (postSaveServices.addCompanyScoresInDB('sector'));
         });
     });
 
@@ -80,18 +80,18 @@ describe('postSave.services', () => {
             const mockFindAll = [];
             jest.spyOn(Companies, 'findAll').mockResolvedValue(mockFindAll);
 
-            const result = await postSaveServices.getHttpResponeData([1,2]);
-            expect(result).toEqual([[],[]]);
+            const result = await postSaveServices.getHttpResponeData([1, 2]);
+            expect(result).toEqual([[], []]);
         });
 
         it('should return an array of objects when id sent was present in the database', async () => {
-            
+
             const mockFindAll = {
                 company_id: 1,
                 name: 'name',
                 score: 'score'
             };
-            jest.spyOn(Companies,'findAll').mockResolvedValue(mockFindAll);
+            jest.spyOn(Companies, 'findAll').mockResolvedValue(mockFindAll);
 
             const result = await postSaveServices.getHttpResponeData([1]);
             expect(result).toEqual([mockFindAll]);

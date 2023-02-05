@@ -16,4 +16,4 @@ const rankingSchema = Joi.object({
     sector: Joi.string()
 }).required();
 
-module.exports = { postSaveSchema, updateCompanyDetailsSchema, rankingSchema};
+module.exports = { postSaveSchema, updateCompanyDetailsSchema, rankingSchema };

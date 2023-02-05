@@ -19,4 +19,4 @@ const queryValidator = (schema) => {
     };
 };
 
-module.exports = { bodyValidator ,queryValidator };
+module.exports = { bodyValidator, queryValidator };
