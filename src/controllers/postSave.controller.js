@@ -5,13 +5,12 @@ const postSave = async (req, res) => {
     const url = req.body.urlLink;
     const csv = await fetch(url).then(res => res.text());
     const data = csvToJSON(csv);
+
     let [id, sector] = await postSaveServices.checkForNewUrlData(data);
     sector = sector.filter((item, idx) => sector.indexOf(item) === idx);
-    console.log(id, sector);
 
     if (id.length === 0 && sector.length === 0) {
         res.status(200).json({ message: 'No new data found', data: [] });
-        return;
     }
 
     for (let idx = 0; idx < id.length; idx++) {
