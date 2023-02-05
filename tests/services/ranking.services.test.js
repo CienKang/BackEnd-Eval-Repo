@@ -19,7 +19,7 @@ describe('Ranking Service', () => {
                         score: 'score'
                     }
                 }]
-            ;
+                ;
             jest.spyOn(Companies, 'findAll').mockReturnValue(mockData);
             const result = await rankingService.getSectorCompDataDB(attributes, sector);
             expect(result).toEqual(mockData);

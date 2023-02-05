@@ -9,7 +9,7 @@ const getSpecificCompanyDetailsDB = async (id, attributes) => {
         attributes: attributes
     });
     if (!data)
-        throw NotFoundError('No data found');
+        throw new NotFoundError('No data found');
     return data.dataValues;
 };
 
@@ -22,7 +22,7 @@ const updateSpecificCompanyDetailsDB = async (id, newData) => {
         returning: true,
     });
     if (!data)
-        throw NotFoundError('No data found');
+        throw new NotFoundError('No data found');
     return data;
 };
 module.exports = { getSpecificCompanyDetailsDB, updateSpecificCompanyDetailsDB };
